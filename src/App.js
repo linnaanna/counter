@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+function App(props) {
+  const [count, setCount] = useState(0);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     {props.message.length > 10
+        ? <p>Too long</p>
+        : <p>{props.message}</p>
+      }
+      
+      {count <= 10 
+        ? <p>You have pressed the button {count} times</p> 
+        : <p>You have pressed the button more than 10 times</p>
+      }
+      <button onClick={() => setCount(count + 1)} id="btn">+</button>
+      <button onClick={() => setCount(count - 1)} id="btn">-</button>
+      <button onClick={() => setCount(0)} id="btn">Clear</button>
     </div>
   );
 }
